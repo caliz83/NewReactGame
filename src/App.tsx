@@ -12,6 +12,10 @@
 
 //code . to open in vs code
 
+//to save to github: git init 
+// git add .
+// git commit -m 'initial commit'
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
