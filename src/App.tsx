@@ -12,17 +12,37 @@
 
 //code . to open in vs code
 
-//to save to github: git init 
+//to save to github: git init
 // git add .
 // git commit -m 'initial commit'
 
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import { Button, ButtonGroup, Grid, GridItem, Show } from "@chakra-ui/react";
+import Navbar from "./Components/Navbar";
 
 function App() {
-  return <Button colorScheme='blue'>Button</Button>
+  return (
+    <Grid
+      templateAreas={{
+        base: `'nav' 'main'`,
+        lg: `'nav nav' 'aside main'`, //1024
+      }}
+    >
+      <GridItem area="nav">
+        <Navbar />
+      </GridItem>
+      <Show above="lg">
+      <GridItem area="aside" bg="gold">
+        Aside
+      </GridItem>
+      </Show>
+      <GridItem area="main" bg="blue">
+        Main
+      </GridItem>
+    </Grid>
+  );
 }
 
-export default App
+export default App;
