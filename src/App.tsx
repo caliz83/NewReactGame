@@ -21,6 +21,7 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { Button, ButtonGroup, Grid, GridItem, Show } from "@chakra-ui/react";
 import Navbar from "./Components/Navbar";
+import ColorModeSwitch from "./Components/ColorModeSwitch";
 
 function App() {
   return (
