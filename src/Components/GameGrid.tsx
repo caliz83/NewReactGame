@@ -1,31 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import apiClient from '../Services/api-client'
-
-interface Game {
-    id: number;
-    name: string;
-}
-
-interface FetchGameResponse {
-    id: number;
-    results: Game []
-}
+import { SimpleGrid, Text } from '@chakra-ui/react';
+import useGames from '../Hooks/UseGames';
+import GameCard from './GameCard';
 
 const GameGrid = () => {
 
-    const [games, setGames] = useState<Game[]>([]); //<Game[]> sets type for setGames, ([]) sets type for games
-    const [error, setError] = useState('') //can either define like useState<string>() or useState('') to define it as a string
-
-    useEffect(() => {
-        apiClient.get<FetchGameResponse>('/games')  
-        .then(response => setGames(response.data.results))
-        .catch(error => setError(error.message))  
-    }, [])
+  const { games, error} = useGames(); //kidn of like a useState but we created instead of from react
 
   return (
-    <ul>
-    {games.map(game => <li key={game.id}>{game.name}</li>)}      
-    </ul>
+    <>
+    {error && <Text>{error}</Text>}
+    <SimpleGrid columns={{sm:1, md:2, lg:3, xl:5}} padding={'20px'} spacing={10}>
+    {games.map(game => <GameCard key={game.id} game = {game}></GameCard>)}      
+    </SimpleGrid>
+    </>
   )
 }
 
