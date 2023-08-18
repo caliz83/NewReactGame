@@ -24,25 +24,33 @@ import Navbar from "./Components/Navbar";
 import ColorModeSwitch from "./Components/ColorModeSwitch";
 import GameGrid from "./Components/GameGrid";
 import GenreList from "./Components/GenreList";
+import { Genre } from "./Hooks/UseGenres";
+import PlatformSelector from "./Components/PlatformSelector";
 
 function App() {
+
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
   return (
     <Grid
       templateAreas={{
         base: `'nav' 'main'`,
         lg: `'nav nav' 'aside main'`, //1024
       }}
+
+      templateColumns={{base: '1fr', lg: '200px'}}
     >
       <GridItem area="nav">
         <Navbar />
       </GridItem>
       <Show above="lg">
       <GridItem area="aside" paddingX='5px'>
-        <GenreList />
+        <GenreList selectedGenre={selectedGenre} onSelectGenre={(genre) => setSelectedGenre(genre)} />
       </GridItem>
       </Show>
       <GridItem area="main">
-        <GameGrid />
+        <PlatformSelector />
+        <GameGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );

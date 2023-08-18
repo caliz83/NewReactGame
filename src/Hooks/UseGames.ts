@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import apiClient from "../Services/api-client";
 import { CanceledError } from "axios";
 import useData from "./UseData";
+import { Genre } from "./UseGenres";
 
 export interface Platform {
   id: number;
@@ -23,7 +24,7 @@ export interface Game {
 // }
 
 
-const useGames = () => useData<Game>('/games')
+const useGames = (selectGenre: Genre) => useData<Game>('/games', {params: {genres: selectGenre?.id}})
 // {
 //   const [games, setGames] = useState<Game[]>([]); //<Game[]> sets type for setGames, ([]) sets type for games
 //   const [error, setError] = useState(""); //can either define like useState<string>() or useState('') to define it as a string
