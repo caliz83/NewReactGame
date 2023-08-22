@@ -19,23 +19,25 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { Button, ButtonGroup, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Button, ButtonGroup, Grid, GridItem, Show, useLatestRef } from "@chakra-ui/react";
 import Navbar from "./Components/Navbar";
 import ColorModeSwitch from "./Components/ColorModeSwitch";
 import GameGrid from "./Components/GameGrid";
 import GenreList from "./Components/GenreList";
 import { Genre } from "./Hooks/UseGenres";
 import PlatformSelector from "./Components/PlatformSelector";
+import { Platform } from "./Hooks/UseGames";
 
 function App() {
 
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
 
   return (
     <Grid
       templateAreas={{
         base: `'nav' 'main'`,
-        lg: `'nav nav' 'aside main'`, //1024
+        lg: `'nav nav' 'aside main'`, //1024px
       }}
 
       templateColumns={{base: '1fr', lg: '200px'}}
@@ -49,8 +51,8 @@ function App() {
       </GridItem>
       </Show>
       <GridItem area="main">
-        <PlatformSelector />
-        <GameGrid selectedGenre={selectedGenre} />
+        <PlatformSelector selectedPlatform={selectedPlatform} onSelectPlatform={(platform) => setSelectedPlatform(platform)} />
+        <GameGrid selectedPlatform={selectedPlatform} selectGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );

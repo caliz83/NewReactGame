@@ -31,7 +31,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, dep?: 
       });
 
     return () => controller.abort();
-  }, deps?[...deps]:[]);
+  }, dep?[...dep]:[]);
 
   useEffect(() => {}, []);
 
