@@ -24,7 +24,7 @@ export interface Game {
 // }
 
 
-const useGames = (selectGenre: Genre | null, selectedPlatform: Platform | null) => useData<Game>('/games', {params: {genres: selectGenre?.id, parent_platform: selectedPlatform?.id}}, [selectGenre?.id,])
+const useGames = (selectGenre: Genre | null, selectedPlatform: Platform | null) => useData<Game>('/games', {params: {genres: selectGenre?.id, parent_platforms: selectedPlatform?.id}}, [selectGenre?.id,])
 // {
 //   const [games, setGames] = useState<Game[]>([]); //<Game[]> sets type for setGames, ([]) sets type for games
 //   const [error, setError] = useState(""); //can either define like useState<string>() or useState('') to define it as a string
