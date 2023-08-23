@@ -3,6 +3,7 @@ import apiClient from "../Services/api-client";
 import { CanceledError } from "axios";
 import useData from "./UseData";
 import { Genre } from "./UseGenres";
+import { GameQuery } from "../App";
 
 export interface Platform {
   id: number;
@@ -23,8 +24,19 @@ export interface Game {
 //   results: Game[];
 // }
 
-
-const useGames = (selectGenre: Genre | null, selectedPlatform: Platform | null) => useData<Game>('/games', {params: {genres: selectGenre?.id, parent_platforms: selectedPlatform?.id}}, [selectGenre?.id,])
+const useGames = (gameQuery: GameQuery) =>
+  useData<Game>(
+    "/games",
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText
+      },
+    },
+    [gameQuery.genre?.id]
+  );
 // {
 //   const [games, setGames] = useState<Game[]>([]); //<Game[]> sets type for setGames, ([]) sets type for games
 //   const [error, setError] = useState(""); //can either define like useState<string>() or useState('') to define it as a string

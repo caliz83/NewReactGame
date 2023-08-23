@@ -6,10 +6,12 @@ import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 import { Genre } from '../Hooks/UseGenres';
+import { GameQuery } from '../App';
 
 interface Props {
-  selectGenre: Genre | null
-  selectedPlatform: Platform | null
+  gameQuery: GameQuery
+  // selectGenre: Genre | null
+  // selectedPlatform: Platform | null
 }
 
 const GameGrid = ({selectGenre, selectedPlatform}: Props) => {
@@ -20,7 +22,7 @@ const GameGrid = ({selectGenre, selectedPlatform}: Props) => {
   return (
     <>
     {error && <Text>{error}</Text>}
-    <SimpleGrid columns={{sm:1, md:2, lg:3, xl:5}} padding={'20px'} spacing={3}>
+    <SimpleGrid columns={{sm:1, md:2, lg:3, xl:4}} padding={'20px'} spacing={6}>
       {isLoading && skeleton.map(skeleton => 
       <GameCardContainer key={skeleton} >
       <GameCardSkeleton/>
