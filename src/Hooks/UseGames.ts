@@ -17,6 +17,7 @@ export interface Game {
   background_image: string;
   parent_platforms: { platform: Platform }[];
   metacritic: number;
+  rating_top: number
 }
 
 // interface FetchGameResponse {
@@ -26,7 +27,7 @@ export interface Game {
 
 const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
-    "/games",
+    "./games",
     {
       params: {
         genres: gameQuery.genre?.id,
@@ -35,7 +36,7 @@ const useGames = (gameQuery: GameQuery) =>
         search: gameQuery.searchText
       },
     },
-    [gameQuery.genre?.id]
+    [gameQuery]
   );
 // {
 //   const [games, setGames] = useState<Game[]>([]); //<Game[]> sets type for setGames, ([]) sets type for games

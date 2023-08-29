@@ -30,6 +30,7 @@ import { Platform } from "./Hooks/UseGames";
 import SortSelector from "./Components/SortSelector";
 import GameHeading from "./Components/GameHeading";
 
+//Query Object Pattern - instead of adding multiple UseStates, put them all in here
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
@@ -59,20 +60,20 @@ function App() {
       </GridItem>
       <Show above="lg">
       <GridItem area="aside" paddingX={1}>
-        <GenreList selectedGenre={GameQuery.genre} onSelectGenre={(genre) => setGameQuery({...gameQuery, genre})} />
+        <GenreList selectedGenre={gameQuery.genre} onSelectGenre={(genre) => setGameQuery({...gameQuery, genre})} />
       </GridItem>
       </Show>
       <GridItem area="main">
         <Box paddingLeft={5}>
           <GameHeading gameQuery={gameQuery} />
           <HStack spacing={5} marginLeft='20px' marginBottom={5}>
-          <PlatformSelector selectedPlatform={GameQuery.platform} onSelectPlatform={(platform) => setGameQuery({...gameQuery, platform})} />
+          <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={(platform) => setGameQuery({...gameQuery, platform})} />
           <SortSelector sortOrder={gameQuery.sortOrder} onSelectSortOrder={(sortOrder) => setGameQuery({...gameQuery, sortOrder})} />
           </HStack>
         </Box>
         <GameGrid gameQuery={gameQuery} />
-      </GridItem>
-    </Grid>
+        </GridItem>
+        </Grid>
   );
 }
 

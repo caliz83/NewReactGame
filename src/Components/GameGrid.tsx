@@ -14,9 +14,9 @@ interface Props {
   // selectedPlatform: Platform | null
 }
 
-const GameGrid = ({selectGenre, selectedPlatform}: Props) => {
+const GameGrid = ({gameQuery}: Props) => {
 
-  const { data, error, isLoading} = useGames(selectGenre, selectedPlatform); //kind of like a useState but we created it instead of from react
+  const { data, error, isLoading} = useGames(gameQuery); //kind of like a useState but we created it instead of from react
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
   return (
